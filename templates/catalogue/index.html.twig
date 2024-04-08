@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+
+	{# Catalogue #}
+	<div class="container p-5">
+		<div class="row">
+
+		 
+
+			{% for perfume in perfumes %}
+				<div class="col-md-4">
+					<div class="card mb-5">
+						
+		    {% if perfume.mediasId |length > 0 %}
+                <img src="{{ asset('upload/'~perfume.mediasId[0].src) }}" width="200" class="img-fluid" id="image" alt="">
+            {% endif %}
+						<div class="card-body">
+						<a href="{{path('app_show_perfume', {'id' : perfume.id})}}" >
+							<h5 class="card-title">{{perfume.perfumeTitle}}</h5>
+							<p class="card-text">{{perfume.description}}</p>
+							<p class="card-text">{{perfume.olfactiveFamilyId.familyName}}</p>
+							<p class="card-text">{{perfume.price}}€</p>
+							<a href="#" class="btn btn-primary">Ajouter au panier</a>
+							<a href="#" class="btn btn-link">
+								<i class="far fa-heart"></i>
+							</a>
+						</div>
+						</a>
+					</div>
+				</div>
+
+			{% endfor %}
+		</div>
+	</div>
+
+
+{% endblock %}

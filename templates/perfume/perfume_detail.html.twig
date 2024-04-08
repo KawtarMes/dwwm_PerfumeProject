@@ -1,0 +1,69 @@
+{% extends 'backoffice.html.twig' %}
+
+{% block body %}
+
+
+
+
+    <div class=" p-5 m-3 border border-1 rounded border-secondary row justify-content-between">
+        <div  class="col-md-7 row justify-content-between text-center">
+            <div class="col-md-6 card text-center p-0">
+            {% if perfume.mediasId |length > 0 %}
+                <img src="{{ asset('upload/'~perfume.mediasId[0].src) }}" width="200" class="img-fluid" id="image" alt="">
+            {% endif %}
+            </div>
+            <div class="col-md-6" id="gallery">
+                {% for media in perfume.mediasId %}
+
+                    <img src="{{ asset('upload/'~media.src) }}" class="img-thumbnail mt-1"  width="100" alt="">
+
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-md-5 border-left border-3 border-left-dark me-5 text-center">
+            <h2>{{ perfume.perfumeTitle }}</h2>
+            <h3>{{ perfume.price }} €</h3>
+            <h3>{{ perfume.olfactiveFamilyId.familyName }}</h3>
+            <p>{{ perfume.description }}</p>
+        </div>
+<div class="mt-5 mr-5">
+        <a href="{{path('admin_perfume_update', {'id' : perfume.id})}}" class="btn btn-secondary">Modifier les information du produit</a>
+        <a href="{{ path('perfume_update_medias',{'id': perfume.id})}}" class="btn btn-secondary">Modifier les medias</a>
+        <a href="{{ path('admin_perfume_delete', {'id': perfume.id})}}" class="btn btn-secondary">Supprimer le produit</a>
+</div>
+
+    </div>
+
+    <script>
+        let gallery=document.getElementById('gallery');
+
+        let img=document.getElementById('image');
+
+        gallery.addEventListener('click', changePhoto);
+
+        function changePhoto(e)
+        {
+
+            clearStyle();
+
+            img.src = e.target.src;
+            e.target.style.border='2px solid black';
+        }
+
+        function clearStyle()
+        {
+            let imgs= document.getElementsByClassName('img-thumbnail');
+            // console.log(imgs);
+            for (let img of imgs) {
+                img.style.border='';
+            }
+
+
+        }
+
+
+
+    </script>
+
+
+{% endblock %}

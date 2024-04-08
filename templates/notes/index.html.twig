@@ -1,0 +1,54 @@
+{% extends 'backoffice.html.twig' %}
+
+
+{% block body %}
+
+
+	<div class="container">
+		<h1>Gestion Notes ✅</h1>
+		<a href="{{ path('admin_notes_new')}}" class="btn btn-success w-25 mr-3">Ajouter une notes</a>
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">Id</th>
+					<th scope="col">Note</th>
+					<th scope="col">
+						Image
+					</th>
+
+				</tr>
+			</thead>
+			<tbody>
+				{% if notes | length > 0 %}
+					{% for note in notes %}
+						<tr>
+							<th scope="row">{{note.id}}</th>
+							<td>
+								{{note.noteName}}</td>
+
+
+							<td>
+								<a href="{{ url("admin_notes_new", {'id' : note.id}) }}" class="btn btn-primary">Modifier</a>
+							</td>
+							<td>
+								<a href="{{ url('admin_notes_delete', {'id' : note.id}) }}" class="btn btn-danger ">Supprimer</a>
+							</td>
+							<td>
+							<a href="{{ url('note_detail' , {'id' : note.id })}}" class="btn btn-success">Detail </a>
+							</td>
+							<td>
+								{% if note.media is not null %}
+									<img src="{{ asset('upload/' ~ note.media.src) }}" class="img-thumbnail mt-1" width="100" alt="">
+								{% endif %}
+							</td>
+						</tr>
+					</td>
+
+
+				{% endfor %}
+			{% endif %}
+
+		</div>
+
+	</tbody>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'backoffice.html.twig' %}
+
+{% block title %}Gestion articles
+{% endblock %}
+
+{% block body %}
+
+	<div class="container-fluid p-3">
+		<h1>Gestion artcles ✅</h1>
+
+		<a href="{{ path('admin_article_new')}}" class="btn btn-success w-25 mr-3">Ajouter un article</a>
+
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">Id</th>
+					<th scope="col">Nom</th>
+					<th scope="col">Contenu</th>
+
+				</tr>
+			</thead>
+			<tbody>
+				{% if articles | length > 0 %}
+					{% for article in articles %}
+						<tr>
+							<th scope="row">{{article.id}}</th>
+							<td>
+								{{article.articleTitle}}
+							</td>
+							<td>
+								{{article.articleContent}}
+							</td>
+
+							<td>
+								<a href="{{ url("admin_article_update", {'id' : article.id}) }}" class="btn btn-primary">Modifier</a>
+							</td>
+							<td>
+								<a href=" {{ url('admin_article_delete', {'id' : article.id}) }}" class="btn btn-danger ">Supprimer</a>
+							</td>
+							<td>
+								<a href=" {{ url('admin_detail_article', {'id' : article.id}) }}" class="btn btn-success ">Detail</a>
+							</td>
+						{% endfor %}
+					{% endif %}
+
+				</div>
+
+			</tbody>
+		{% endblock %}

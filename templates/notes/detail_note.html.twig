@@ -1,0 +1,15 @@
+{% extends 'backoffice.html.twig'  %}
+{% block body %}
+
+
+	<td>
+		{% if note.media is not null %}
+			<img src="{{ asset('upload/' ~ note.media.src) }}" class="" width="400" alt="">
+		{% endif %}
+	</td>
+    
+{% if note.media is not null %}
+    <a href="{{ path('admin_notes_delete_media', {'id': note.id}) }}" class="btn btn-secondary">Supprimer le média</a>
+{% endif %}
+
+{% endblock %}

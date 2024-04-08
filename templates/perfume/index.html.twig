@@ -1,0 +1,74 @@
+{% extends 'backoffice.html.twig' %}
+
+{% block title %}Gestion des parfums
+{% endblock %}
+
+{% block body %}
+
+	<div class="container">
+
+		<a href="{{ path('admin_perfume_new')}}" class="btn btn-success">Ajouter un parfum</a>
+
+		<table class="table table table-striped">
+			<thead>
+				<tr>
+					<th scope="col">Id</th>
+					<th scope="col">title</th>
+					<th scope="col">description</th>
+					<th scope="col">prix</th>
+					<th scope="col">genre</th>
+					<th scope="col">Volume(ml)
+					</th>
+					<th scope="col">qté en stock</th>
+					<th scope="col">marque</th>
+					<th scope="col">notes parfum</th>
+					<th scope="col">Famille olfactive</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% if perfumes | length > 0 %}
+					{% for perfume in perfumes %}
+						<tr>
+							<th scope="row">{{perfume.id}}</th>
+							<td>
+								{{perfume.perfumeTitle}}</td>
+							<td>
+								{{perfume.description}}</td>
+							<td>{{ perfume.price }}€</td>
+							<td>{{ perfume.gender }}
+							</td>
+							<td>{{perfume.Volume}}
+								ml</td>
+							<td>{{perfume.quantity}}</td>
+							<td>{{perfume.brand}}</td>
+							<td>
+								{% for note in perfume.noteId %}
+									{{note.noteName}}
+								{% endfor %}
+							</td>
+
+							<td>{{perfume.olfactiveFamilyId.familyName}}</td>
+							<td></td>
+							<td>
+								<a href="{{ url("admin_perfume_update", {'id' : perfume.id}) }}" class="btn btn-primary">Modifier</a>
+							</td>
+							<td>
+								<a href="{{ url('admin_perfume_delete', {'id' : perfume.id})}}" class="btn btn-warning">Supprimer</a>
+							</td>
+					        
+					        <td>
+					        <a href="{{url('perfume_detail' , {'id' : perfume.id})}}"class="btn btn-success ">Detail </a>
+					</td>
+					
+					
+					   
+					    </tr>
+					      {% endfor %}
+					    {% endif %} 
+				</tbody>
+			</tbody>
+		</table>
+
+
+	</div>
+{% endblock %}

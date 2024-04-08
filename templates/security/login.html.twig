@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+{% block title %}Connection{% endblock %}
+{% block description %}<meta name="description" content="Connexion: connectez vous et demarrez votre shopping" {% endblock %}
+
+
+
+{% block body %}
+<form method="post">
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    {% if app.user %}
+        <div class="mb-3">
+            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+        </div>
+    {% endif %}
+
+    <h1 class="h3 mb-3 font-weight-normal">Connexion </h1>
+    <label for="email">Adresse email</label>
+    <input type="email" value="{{ last_username }}" name="email" id="email" class="form-control" autocomplete="email" required autofocus>
+    <label for="password">Mot de passe</label>
+    <input type="password" name="password" id="password" class="form-control" autocomplete="current-password" required>
+
+    <input type="hidden" name="_csrf_token"
+           value="{{ csrf_token('authenticate') }}"
+    >
+ <label>
+        <input type="checkbox" name="_remember_me" checked>
+        Se souvenir de moi
+    </label>
+    <br>
+    
+    <a href="">Pas reçu le mail d'activation? Renvoi</a>
+<br>
+<br>
+{# {{ path('reset_password')}} #}
+    <a href="">Mot de passe oublié?</a>
+<br><br>
+
+    <button class="btn btn-lg btn-primary" type="submit">
+        Connexion
+    </button>
+   
+
+</form>
+{% endblock %}
+

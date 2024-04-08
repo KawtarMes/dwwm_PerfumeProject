@@ -1,0 +1,17 @@
+{% extends 'backoffice.html.twig'  %}
+{% block body %}
+
+
+	<td>
+		{% if article.medias is not null %}
+			{% for media in article.medias %}
+				<img src="{{ asset('upload/' ~ media.src) }}" class="" width="400" alt="">
+			{% endfor %}
+		{% endif %}
+	</td>
+<p> {{article.articleContent}}</p>
+	{% if article.medias is not null %}
+		<a href="{{ path('admin_article_delete_media', {'id': article.id}) }}" class="btn btn-danger">Supprimer le média</a>
+	{% endif %}
+
+{% endblock %}

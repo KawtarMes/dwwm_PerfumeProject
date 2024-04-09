@@ -207,4 +207,8 @@ class SecurityController extends AbstractController
             ]);
         }
     }
+    // Historique commande de l'user connecté
+
+    //Detail commande
+    
 }

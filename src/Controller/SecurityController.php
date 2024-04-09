@@ -41,7 +41,7 @@ class SecurityController extends AbstractController
             $user->setActive(0);
 
             //faire un token
-            $token= $this->generateToken();
+            $token = $this->generateToken();
             //assigner ce token au user
             $user->setToken($token);
 
@@ -49,32 +49,24 @@ class SecurityController extends AbstractController
             $manager->persist($user);
             $manager->flush();
 
-            $this->addFlash('success',"Votre compte a bien été crée, Allez vite l'activer");
+            $this->addFlash('success', "Votre compte a bien été crée, Allez vite l'activer");
 
 
             //mail pour la validation       
             $email = (new TemplatedEmail())
                 ->from('kawtarthebest@gmail.com')
-                ->to($user->getEmail())
+                ->to($user->getEmail()) 
                 ->subject('✨Bienvenue chez Perfumes, Activez votre compte✨')
-
-                // path of the Twig template to render
+                // chemin du template du mail 
                 ->htmlTemplate('email/validateAccount.html.twig')
 
-                // change locale used in the template, e.g. to match user's locale
-                // ->locale('fr')
-
-                // pass variables (name => value) to the template
                 ->context([
                     'user' => $user
                 ]);
 
             $mailer->send($email);
-
+            // rédirection à la page de connexion
             return $this->redirectToRoute('app_login');
-
-
-            // return $this->redirectToRoute('app_home');
 
         }
 
@@ -83,7 +75,7 @@ class SecurityController extends AbstractController
         ]);
     }
 
-    //genere des tokens//////////////////////////////////////////
+    //genère des tokens //////////////////////////////////////////
     private function generateToken()
     {
         // rtrim supprime les espaces en fin de chaine de caractère
@@ -112,7 +104,8 @@ class SecurityController extends AbstractController
             $this->addFlash('danger', "Une erreur s'est produite");
         }
 
-        return $this->redirectToRoute('app_login');}
+        return $this->redirectToRoute('app_login');
+    }
 
     //Connexion , Log In , ///////////////////////////////////////////////////////////////////
     #[Route(path: '/connexion', name: 'app_login')]
@@ -134,6 +127,9 @@ class SecurityController extends AbstractController
     {
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
+
+
+
     //Mode passe oublié/////////////////////////////////////////////////////////////////
     #[Route('/reset/password', name: "reset_password")]
     public function reset(Request $request, UserRepository $repo, EntityManagerInterface $entityManager, MailerInterface $mailer)
@@ -144,39 +140,40 @@ class SecurityController extends AbstractController
             // si on a un email de renseigné
             // on requête un user grace à son email
             $user = $repo->findOneBy(['email' => $email]);
-    
+
             if ($user != null && $user->isActive()) {
                 // si il y a un user et que son compte est actif
                 // on génère un token que l'on enregistre en BDD
                 $user->setToken($this->generateToken());
+                //prepare and excecute 
                 $entityManager->persist($user);
                 $entityManager->flush();
-    
+
                 // on prépare l'email
                 $email = (new TemplatedEmail())
-                    ->from('votre_adresse_email@exemple.com')
+                    ->from('kawtarthebest@gmail.com')
                     ->to($user->getEmail())
                     ->subject('Mot de passe perdu?')
                     ->htmlTemplate('email/reset_password.html.twig')
                     ->context([
                         'user' => $user,
-                        'img_dir' => $this->getParameter('img_dir'),
+                        // 'img_dir' => $this->getParameter('img_dir'),
                     ]);
-    
+
                 $mailer->send($email);
-    
+
                 $this->addFlash('success', "Un email de réinitialisation vous a été envoyé.");
-    
-                return $this->redirectToRoute('home');
+
+                return $this->redirectToRoute('app_login');
             } else {
                 $this->addFlash('error', "Votre compte lié à cet email n'est pas actif. Veuillez l'activer d'abord.");
                 return $this->redirectToRoute('app_login');
             }
         }
-    
-        return $this->render('security/forgotPassword.twig');
+
+        return $this->render('security/forgotPassword.html.twig');
     }
-    
+
     //nouvelle pass word , validation/////////////////////////////////////////////////////////////////
     // route d'entrée au click du mail de réinitialisation
     #[Route('/new/password/{token}', name: "new_password")]
@@ -208,9 +205,6 @@ class SecurityController extends AbstractController
             return $this->render('security/newPassword.html.twig', [
                 'form' => $form
             ]);
-
-
         }
-
     }
 }

@@ -1,42 +1,50 @@
 {% extends 'base.html.twig'  %}
 
 {% block body %}
-
-	<div class="container">
-		<div class="row">
-			<div class="col-md-6">
-				<img src="{{ asset('upload/'~perfume.mediasId[0].src) }}" alt="Image du parfum :{{perfume.perfumeTitle}} " class="img-fluid">
-			</div>
-			<div class="col-md-6">
-				<h1>{{perfume.perfumeTitle}}</h1>
-                <p>Eau de Parfum</p>
-                <p>{{perfume.olfactiveFamilyId.familyName}}</p>
-                <p>{{perfume.brand}}</p>
-                <p>{{perfume.gender}}</p>
-                <p></p>
-                <p></p>
-				<h2></h2>
-				<h2></h2>
-				<h3></h3>
-				<h3>{{perfume.volume}} ml</h3>
-				<h3>{{perfume.price}}€</h3>
-				<p>
-					{{perfume.description}}
-				</p>
-				{% for note in perfume.noteId %}
-					{{note.noteName}}
-				{% endfor %}
-				{# <ul class="list-unstyled">
-								            <li>Notes de tête : Bergamote, citron</li>
-								            <li>Notes de cœur : Jasmin, rose, ylang-ylang</li>
-								            <li>Notes de fond : Vanille, santal, musc</li>
-								          </ul> #}
-				<p>
-					<button type="button" class="btn btn-primary">Ajouter au panier</button>
-				</p>
+	<!-- Product section-->
+	<section class="py-5">
+		<div class="container px-4 px-lg-5 my-5">
+			<div class="row gx-4 gx-lg-5 align-items-center">
+				<div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" b alt="Image du parfum : {{ perfume.perfumeTitle }}"/></div>
+				<div class="col-md-6">
+					<div class="small mb-1">Ref:
+						{{perfume.id}}</div>
+					<h1 class="display-5 fw-bolder">{{ perfume.perfumeTitle }}</h1>
+					<div class="fs-5 mb-5">
+						<p><b>Prix:</b>{{ perfume.price }}€</p>
+						<p><b>Volume:</b>{{ perfume.volume}}ml</p>
+						<p><b>Famille olfactive:</b>{{perfume.olfactiveFamilyId.familyName}}</p>
+						<p>{{perfume.brand}}</p>
+					</div>
+					<p class="lead">{{ perfume.description }}</p>
+					<b>Notes:</b>
+					{% for note in perfume.noteId %}
+						{{note.noteName}}
+						{% if note.media is not null %}
+									<img src="{{ asset('upload/' ~ note.media.src) }}" class="img-thumbnail mt-1" width="100" alt="">
+								{% endif %}
+						
+					
+					{% endfor %}
+					<div class="d-flex">
+						<input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem"/>
+						<button class="btn btn-outline-dark flex-shrink-0" type="button">
+							<i class="bi-cart-fill me-1"></i>
+							Ajouter au panier
+						</button>
+					</div>
+				</div>
 			</div>
 		</div>
-	</div>
+	</section>
 
-
+	<!-- Related items section-->
+	<section class="py-5 bg-light">
+		<div class="container px-4 px-lg-5 mt-5">
+			<h2 class="fw-bolder mb-4">Produits similaires</h2>
+			<div
+				class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center"><!-- You can populate related products here -->
+			</div>
+		</div>
+	</section>
 {% endblock %}

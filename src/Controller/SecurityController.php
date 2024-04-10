@@ -28,11 +28,12 @@ class SecurityController extends AbstractController
         $user = new User();
 
         //créer le form 
-        $form = $this->createForm(RegistrationType::class, $user);
+        $form = $this->createForm(RegistrationType::class);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            //set sasie du form dans user
             $user = $form->getData();
             //hasher le mot de passe
             $user->setPassword($hasher->hashPassword($user, $form->get('password')->getData()));
@@ -60,6 +61,8 @@ class SecurityController extends AbstractController
                 // chemin du template du mail 
                 ->htmlTemplate('email/validateAccount.html.twig')
 
+
+                //var twig
                 ->context([
                     'user' => $user
                 ]);

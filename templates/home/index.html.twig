@@ -1,19 +1,18 @@
 {% extends 'base.html.twig' %}
-{% block title %}Accueil Perfumes
-{% endblock %}
+{% block title %}Accueil Perfumes{% endblock %}
 
 {% block body %}
-	<div class="container-fluid" style="height: 100vh; display: flex; justify-content: center; align-items: center; background-image: url('https://images.pexels.com/photos/965989/pexels-photo-965989.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'); background-size: cover; background-position: center;">
-		<div class="text-center">
-			<div class=" p-3 rounded" style="text-shadow: 0 0 5px rgba(0, 0, 0, 0.5)">
-				<h1>Bienvenue</h1>
-				<p>Bienvenue à notre site de parfums. Découvrez les secrets de la création de parfums et trouvez le parfum parfait pour vous. Avec notre quiz unique, explorez les préférences de notes olfactives et laissez-nous vous guider pour une expérience olfactive inoubliable.</p>
-			</div>
-			<a href="{{path('app_catalogue')}}" class="btn btn-primary">Découvre notre catalogue</a>
-			<a href="" class="btn btn-success">Découvre notre Blog</a>
-
-		</div>
-	</div>
-
-
+<div class="container-fluid p-0" style="height: 100vh; background-image: url('https://images.pexels.com/photos/965989/pexels-photo-965989.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'); background-size: cover; background-position: center;">
+    <div class="d-flex justify-content-center align-items-center h-100">
+        <div class="text-center text-light">
+            <div class="p-3 rounded" style="text-shadow: 0 0 5px rgba(0, 0, 0, 0.5)">
+                <h1>Bienvenue</h1>
+                <p>Bienvenue à notre site de parfums. Découvrez les secrets de la création de parfums et trouvez le parfum parfait pour vous. Avec notre quiz unique, explorez les préférences de notes olfactives et laissez-nous vous guider pour une expérience olfactive inoubliable.</p>
+            </div>
+            <a href="{{ path('app_catalogue') }}" class="btn btn-primary mt-3">Découvre notre catalogue</a>
+            <a href="#" class="btn btn-success mt-3">Découvre notre Blog</a>
+        </div>
+    </div>
+</div>
 {% endblock %}
+

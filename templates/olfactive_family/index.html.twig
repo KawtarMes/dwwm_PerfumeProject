@@ -1,54 +1,41 @@
 {% extends 'backoffice.html.twig' %}
 
-{% block title %}Hello OlfactiveFamilyController!
-{% endblock %}
+{% block title %}Gestion des Familles Olfactives{% endblock %}
 
 {% block body %}
-
-	<div class="container">
-		<h1>Gestion des Familles Olfactive ✅</h1>
-
-		<a href="{{ path('admin_familyOlf_new')}}" class="btn btn-success w-25 mr-3">Ajouter une Famille olfactive</a>
-
-		<table class="table">
-			<thead>
-				<tr>
-					<th scope="col">Id</th>
-					<th scope="col">Nom</th>
-					<th scope="col">Description</th>
-					<th scope="col">Notes</th>
-
-				</tr>
-			</thead>
-			<tbody>
-				{% if families | length > 0 %}
-					{% for family in families %}
-						<tr>
-							<th scope="row">{{family.id}}</th>
-							<td>
-								{{family.familyName}}</td>
-							{# j'utilise camelCase car les _ sont pas pris en compte #}
-							<td>
-								{{family.familyDescription}}</td>
-
-
-							<td>
-								{# ***********Inclure les notes***********  #}
-								{% for note in family.notes %}
-									{{note.noteName}}
-								{% endfor %}
-							</td>
-
-							<td>
-								<a href="{{ url("admin_familyOlf_update", {'id' : family.id}) }}" class="btn btn-primary">Modifier</a>
-							</td>
-							<td>
-								<a href="{{ url("admin_familyOlf_delete", {'id' : family.id}) }}" class="btn btn-danger w-25 mr-3">Supprimer</a>
-							</td>
-						{% endfor %}
-					{% endif %}
-
-				</div>
-
-		</tbody>
+<div class="container">
+    <h1 class="mb-4">Gestion des Familles Olfactives ✅</h1>
+    <a href="{{ path('admin_familyOlf_new')}}" class="btn btn-success w-25 mr-3">Ajouter une Famille olfactive</a>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Description</th>
+                <th scope="col">Notes</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if families | length > 0 %}
+            {% for family in families %}
+            <tr>
+                <th scope="row">{{family.id}}</th>
+                <td>{{family.familyName}}</td>
+                <td>{{family.familyDescription}}</td>
+                <td>
+                    {% for note in family.notes %}
+                    {{note.noteName}}
+                    {% endfor %}
+                </td>
+                <td>
+                    <a href="{{ url("admin_familyOlf_update", {'id' : family.id}) }}" class="btn btn-primary">Modifier</a>
+                    <a href="{{ url("admin_familyOlf_delete", {'id' : family.id}) }}" class="btn btn-danger">Supprimer</a>
+                </td>
+            </tr>
+            {% endfor %}
+            {% endif %}
+        </tbody>
+    </table>
+</div>
 {% endblock %}

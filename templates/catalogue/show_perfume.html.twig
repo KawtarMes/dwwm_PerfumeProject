@@ -5,26 +5,38 @@
 	<section class="py-5">
 		<div class="container px-4 px-lg-5 my-5">
 			<div class="row gx-4 gx-lg-5 align-items-center">
-				<div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" b alt="Image du parfum : {{ perfume.perfumeTitle }}"/></div>
+				<div class="col-md-6"><img src="{{ asset('upload/' ~ perfume.mediasId[0].src) }}" class="card-img-top mb-5 mb-md-0" b alt="Image du parfum : {{ perfume.perfumeTitle }}"/></div>
 				<div class="col-md-6">
 					<div class="small mb-1">Ref:
 						{{perfume.id}}</div>
 					<h1 class="display-5 fw-bolder">{{ perfume.perfumeTitle }}</h1>
 					<div class="fs-5 mb-5">
-						<p><b>Prix:</b>{{ perfume.price }}€</p>
-						<p><b>Volume:</b>{{ perfume.volume}}ml</p>
-						<p><b>Famille olfactive:</b>{{perfume.olfactiveFamilyId.familyName}}</p>
-						<p>{{perfume.brand}}</p>
+						<p>
+							<b>Prix:</b>
+							{{ perfume.price }}€</p>
+						<p>
+							<b>Volume:</b>
+							{{ perfume.volume}}ml</p>
+						<p>
+							<b>Famille olfactive:</b>
+							{{perfume.olfactiveFamilyId.familyName}}</p>
+						<p>
+							<b>Marque:</b>
+							{{perfume.brand}}</p>
 					</div>
-					<p class="lead">{{ perfume.description }}</p>
-					<b>Notes:</b>
-					{% for note in perfume.noteId %}
-						{{note.noteName}}
-						{% if note.media is not null %}
-									<img src="{{ asset('upload/' ~ note.media.src) }}" class="img-thumbnail mt-1" width="100" alt="">
-								{% endif %}
-						
-					
+					<div>
+						<p class="lead">{{ perfume.description }}</p>
+						<b>Notes:</b>
+						{% for note in perfume.noteId %}
+							{{note.noteName}}
+							{% if note.media is not null %}
+								<img src="{{ asset('upload/' ~ note.media.src) }}" class="img-thumbnail mt-1" width="100" alt="">
+							{% endif %}
+
+							
+					</div>
+
+
 					{% endfor %}
 					<div class="d-flex">
 						<input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem"/>

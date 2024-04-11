@@ -1,8 +1,6 @@
-{% extends 'backoffice.html.twig'  %}
-{% block body %}
 
 
-	<td>
+	{# <td>
 		{% if note.media is not null %}
 			<img src="{{ asset('upload/' ~ note.media.src) }}" class="" width="400" alt="">
 		{% endif %}
@@ -10,6 +8,72 @@
     
 {% if note.media is not null %}
     <a href="{{ path('admin_notes_delete_media', {'id': note.id}) }}" class="btn btn-secondary">Supprimer le média</a>
-{% endif %}
+{% endif %} #}
+
+{% extends 'backoffice.html.twig' %}
+
+{% block body %}
+
+
+
+
+    <div class=" p-5 m-3 border border-1 rounded border-secondary row justify-content-between">
+        <div  class="col-md-7 row justify-content-between text-center">
+            <div class="col-md-6 card text-center p-0">
+            {% if note.media |length > 0 %}
+                <img src="{{ asset('upload/'~ note.media.src) }}" width="200" class="img-fluid" id="image" alt="{{ note.noteName}}">
+            {% endif %}
+            </div>
+            <div class="col-md-6" id="gallery">
+			    <img src="{{ asset('upload/'~ note.media.src) }}" class="img-thumbnail mt-1"  width="100" alt="">
+
+           
+            </div>
+        </div>
+        <div class="col-md-5 border-left border-3 border-left-dark me-5 text-center">
+            <h2>{{ note.noteName }}</h2>
+  
+        </div>
+<div class="mt-5 mr-5">
+        <a href="{{ path('admin_notes_update',{'id': note.id})}}" class="btn btn-primary">Modifier l'image'</a>
+        <a href="{{ path('admin_notes_delete_media', {'id': note.id})}}" class="btn btn-secondary">Supprimer l'image</a>
+		<a href="{{ path('admin_notes_delete', {'id': note.id})}}" class="btn btn-danger">Supprimer la note</a>
+
+
+</div>
+
+    </div>
+
+    <script>
+        let gallery=document.getElementById('gallery');
+
+        let img=document.getElementById('image');
+
+        gallery.addEventListener('click', changePhoto);
+
+        function changePhoto(e)
+        {
+
+            clearStyle();
+
+            img.src = e.target.src;
+            e.target.style.border='2px solid black';
+        }
+
+        function clearStyle()
+        {
+            let imgs= document.getElementsByClassName('img-thumbnail');
+            // console.log(imgs);
+            for (let img of imgs) {
+                img.style.border='';
+            }
+
+
+        }
+
+
+
+    </script>
+
 
 {% endblock %}

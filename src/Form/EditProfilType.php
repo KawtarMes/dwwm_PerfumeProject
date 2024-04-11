@@ -46,10 +46,10 @@ class EditProfilType extends AbstractType
                     'min'=> 3,
                     'minMessage' => 'Pas moins de {{ limit }} caratères',
                 ])]])
-            ->add('rating', EntityType::class, [
-                'class' => Rating::class,
-                'choice_label' => 'id',
-            ])
+            // ->add('rating', EntityType::class, [
+            //     'class' => Rating::class,
+            //     'choice_label' => 'id',
+            // ])
             ->add('submit', SubmitType::class, ['label'=>'Enregistrer'])
 
         ;

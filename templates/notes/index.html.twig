@@ -25,7 +25,7 @@
                     {% endif %}
                 </td>
                 <td>
-                    <a href="{{ url("admin_notes_new", {'id' : note.id}) }}" class="btn btn-primary">Modifier</a>
+                    <a href="{{ url("admin_notes_update", {'id' : note.id}) }}" class="btn btn-primary">Modifier</a>
                     <a href="{{ url('admin_notes_delete', {'id' : note.id}) }}" class="btn btn-danger">Supprimer</a>
                     <a href="{{ url('note_detail' , {'id' : note.id })}}" class="btn btn-success">Détail</a>
                 </td>

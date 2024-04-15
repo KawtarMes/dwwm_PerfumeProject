@@ -40,16 +40,21 @@ class CartService
     // Retirer un produit du panier
     public function remove($id): void
     {
+
         // Récupération du panier depuis la session
         $cart = $this->session->get('cart', []);
 
+
         // Vérifier si le produit est dans le panier et sa quantité
-        if (isset($cart[$id]) && $cart[$id] == 1) {
+        // si $cart[21] existe ou 21 est un index
+        // dump($cart["$id"]);
+        // die;
+        if (isset($cart["$id"]) && $cart["$id"] == 1) {
             // Si la quantité est 1, retirer complètement le produit du panier
-            unset($cart[$id]);
-        } elseif (isset($cart[$id]) && $cart[$id] > 1) {
+            unset($cart["$id"]);
+        } elseif (isset($cart["$id"]) && $cart["$id"] > 1) {
             // Si la quantité est supérieure à 1, diminuer la quantité du produit dans le panier
-            $cart[$id]--;
+            $cart["$id"]--;
         }
 
         // Mettre à jour le panier dans la session

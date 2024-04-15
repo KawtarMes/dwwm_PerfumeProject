@@ -27,23 +27,54 @@
 					<div>
 						<p class="lead">{{ perfume.description }}</p>
 						<b>Notes:</b>
-						{% for note in perfume.noteId %}
+						{# {% for note in perfume.noteId %}
 							{{note.noteName}}
 							{% if note.media is not null %}
 								<img src="{{ asset('upload/' ~ note.media.src) }}" class="img-thumbnail mt-1" width="100" alt="">
-							{% endif %}
+							{% endif %} #}
 
-							
+{# carroussel #}
+							<div class="container text-center my-3">
+    <div class="row mx-auto my-auto justify-content-center">
+        <div id="recipeCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner" role="listbox">
+                {% for note in perfume.noteId %}
+                    <div class="carousel-item {% if loop.index == 1 %}active{% endif %}">
+                        <div class="col-md-3">
+                            <div class="card">
+                                <div class="card-img">
+                                    {% if note.media is not null %}
+                                        <img src="{{ asset('upload/' ~ note.media.src) }}" class="img-fluid">
+                                    {% else %}
+                                        <img src="https://via.placeholder.com/700x500.png" class="img-fluid">
+                                    {% endif %}
+                                </div>
+                                <div class="card-img-overlay">{{ note.noteName }}</div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <a class="carousel-control-prev bg-transparent w-aut" href="#recipeCarousel" role="button" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            </a>
+            <a class="carousel-control-next bg-transparent w-aut" href="#recipeCarousel" role="button" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            </a>
+        </div>
+    </div>     
+</div>
+
 					</div>
 
 
-					{% endfor %}
+					{# {% endfor %} #}
 					<div class="d-flex">
 						<input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem"/>
-						<button class="btn btn-outline-dark flex-shrink-0" type="button">
+						<a class="btn btn-primary" href="{{path('add_to_cart',{'id': perfume.id})}}">
 							<i class="bi-cart-fill me-1"></i>
 							Ajouter au panier
-						</button>
+						</a>
 					</div>
 				</div>
 			</div>

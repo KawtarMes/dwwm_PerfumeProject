@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Panier
+{% endblock %}
+
+{% block body %}
+	<div class="container mt-5">
+		<h1 class="mb-4">Détail du Panier</h1>
+		<div class="row">
+			<div class="col">
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col">Produit</th>
+							<th scope="col">Quantité</th>
+							<th scope="col">Prix unitaire</th>
+							<th scope="col">Prix total</th>                      
+						</tr>
+					</thead>
+					<tbody>
+						<!-- Boucle sur les produits du panier -->
+						{% for item in cart %}
+							<tr>
+								<td>{{ item.perfume.perfumeTitle }}</td>
+								<td>{{ item.quantity }}</td>
+								<td>{{ item.perfume.price }}
+									€</td>
+								<td>{{ item.perfume.price * item.quantity }}
+									€</td>
+								<td>
+									{# {% for perfume  in item.perfume %}
+										{% if perfume.mediasId |length > 0 %}
+											<img src="{{ asset('upload/' ~ item.perfume.mediasId.src[0]) }}" class="img-thumbnail mt-1" width="200" alt="">
+										{% endif %}
+									{% endfor %} #}
+								</td>
+                                <td>
+                                <a href="{{ path('add_to_cart',{'id': item.perfume.id})}}" class="btn btn-primary">+</a>
+                                <a href="{{ path('remove_from_cart',{'id': item.perfume.id})}}" class="btn btn-warning">-</a>
+                                <a href="{{ path('delete_from_cart',{'id': item.perfume.id})}}" class="btn btn-danger">Retirer</a>
+                                
+                                
+                                </td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+				<h3>Total:
+					{{ total }}
+					€</h3>
+			</div>
+            <a href="{{ path('destroy_cart')}}" class="btn btn-warning">Vider le panier</a>
+		</div>
+	</div>
+
+{% endblock %}

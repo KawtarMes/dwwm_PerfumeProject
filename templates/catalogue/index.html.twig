@@ -23,7 +23,7 @@
 							<p class="card-text">{{perfume.description}}</p>
 							<p class="card-text">{{perfume.olfactiveFamilyId.familyName}}</p>
 							<p class="card-text">{{perfume.price}}€</p>
-							<a href="#" class="btn btn-primary">Ajouter au panier</a>
+							<a href="{{ path('add_to_cart',{'id': perfume.id})}}" class="btn btn-primary">Ajouter au panier</a>
 							<a href="#" class="btn btn-link">
 								<i class="far fa-heart"></i>
 							</a>

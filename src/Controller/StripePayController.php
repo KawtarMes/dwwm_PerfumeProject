@@ -45,8 +45,9 @@ class StripePayController extends AbstractController
             ];
         }
 
-        // authentification avec la clé API
-        Stripe::setApiKey('sk_test_51OcU2pKgACyIYrH6v06Ad1gubQCP0WKegnxZAw3kgIWq5HJZztdy2ggqB2AhcqtJlnlWSWtUbdkJYkL4DsBfvAKm0087KnfnIk');
+    // Authentification avec la clé API Stripe
+    $stripeKey = $this->getParameter('stripe_key');
+    Stripe::setApiKey($stripeKey);
         // création de la session de paiement à transmettre au template de stripe avec définition des url de success ou d'echec
         $session = Session::create([
 //                 'success_url'=>'https://www.lock.cezdigit.com/commande/success',

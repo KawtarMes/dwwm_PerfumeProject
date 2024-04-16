@@ -1,7 +1,25 @@
 {% extends 'backoffice.html.twig'  %}
 
 {% block body %}
-<div class="container-fluid p-3">
-    {{form(form)}}
- </div>
+	<div
+		class="container-fluid p-3">
+		{# {{form(form)}} #}
+
+		{{ form_start(form) }}
+		{{  form_row(form.ArticleTitle) }}
+		{# {{  form_row(form.articleContent) }} #}
+
+		<p>Messages</p>
+		<div id="editor"></div>
+
+
+		{{ form_end(form) }}
+	</div>
+{% endblock %}
+
+{% block javascripts %}
+
+{{parent()}}
+	{#<script src="{{ asset('ckeditor5/ckeditor.js')}}"></script>#}
+	<script src="{{ asset('js/ckeditorInit.js')}}" defer></script>
 {% endblock %}

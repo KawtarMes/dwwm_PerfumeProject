@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 
 class ArticleType extends AbstractType
 {
@@ -18,15 +19,8 @@ class ArticleType extends AbstractType
             ->add('ArticleTitle', TextType::class, [
                 'label' => "Titre de l'article"
             ])
-            ->add('ArticleContent', CKEditorType::class, [
-                'config' => [
-                    'uiColor' => '#ffffff',
-                    'toolbar' => 'full',
-                    'required' => true,
-                    'language' => 'fr',
-                    'rows' => 30,
-                ],
-            ])
+            ->add('ArticleContent', HiddenType::class)
+            
             ->add('enregistrer', SubmitType::class)
         ;
     }

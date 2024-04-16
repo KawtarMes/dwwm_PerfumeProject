@@ -27,9 +27,9 @@
                                     <td>{{ item.perfume.price }} €</td>
                                     <td>{{ item.perfume.price * item.quantity }} €</td>
                                     <td>
-                                        <a href="{{ path('add_to_cart',{'id': item.perfume.id}) }}" class="btn btn-primary">+</a>
-                                        <a href="{{ path('remove_from_cart',{'id': item.perfume.id}) }}" class="btn btn-warning">-</a>
-                                        <a href="{{ path('delete_from_cart',{'id': item.perfume.id}) }}" class="btn btn-danger">Retirer</a>
+                                        <a href="{{ path('add_to_cart',{'id': item.perfume.id}) }}" class="btn btn-turquois">+</a>
+                                        <a href="{{ path('remove_from_cart',{'id': item.perfume.id}) }}" class="btn btn-bronze">-</a>
+                                        <a href="{{ path('delete_from_cart',{'id': item.perfume.id}) }}" class="btn btn-cream">Retirer</a>
                                     </td>
                                 </tr>
                             {% endfor %}
@@ -40,11 +40,11 @@
             <div class="row">
                 <div class="col">
                     <h3>Total: {{ total }} €</h3>
-                    <a href="{{ path('destroy_cart') }}" class="btn btn-danger">Vider le panier</a>
+                    <a href="{{ path('destroy_cart') }}" class="btn btn-cream">Vider le panier</a>
                 </div>
             </div>
             {% if app.user %}
-                <a href="{{ path('app_stripe_pay') }}" class="btn btn-success mt-2">Valider ma commande</a>
+                <a href="{{ path('app_stripe_pay') }}" class="btn btn-turquois mt-2">Valider ma commande</a>
             {% else %}
                 <a href="{{ path('app_login') }}" class="btn btn-success ">Se connecter</a>
             {% endif %}

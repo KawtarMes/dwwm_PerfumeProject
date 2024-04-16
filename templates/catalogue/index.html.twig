@@ -1,40 +1,34 @@
 {% extends 'base.html.twig' %}
 
-
 {% block body %}
-
-
-	{# Catalogue #}
-	<div class="container p-5">
-		<div class="row">
-
-		 
-
-			{% for perfume in perfumes %}
-				<div class="col-md-4">
-					<div class="card mb-5">
-						
-		    {% if perfume.mediasId |length > 0 %}
-                <img src="{{ asset('upload/'~perfume.mediasId[0].src) }}" width="200" class="img-fluid" id="image" alt="">
-            {% endif %}
-						<div class="card-body">
-						<a href="{{path('app_show_perfume', {'id' : perfume.id})}}" >
-							<h5 class="card-title">{{perfume.perfumeTitle}}</h5>
-							<p class="card-text">{{perfume.description}}</p>
-							<p class="card-text">{{perfume.olfactiveFamilyId.familyName}}</p>
-							<p class="card-text">{{perfume.price}}€</p>
-							<a href="{{ path('add_to_cart',{'id': perfume.id})}}" class="btn btn-primary">Ajouter au panier</a>
-							<a href="#" class="btn btn-link">
-								<i class="far fa-heart"></i>
-							</a>
-						</div>
-						</a>
-					</div>
-				</div>
-
-			{% endfor %}
-		</div>
-	</div>
-
-
+    {# Catalogue #}
+    <div class="container p-5">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            {% for perfume in perfumes %}
+                <div class="col">
+                    <a href="{{ path('app_show_perfume', {'id' : perfume.id}) }}" class="text-decoration-none text-dark">
+                        <div class="card h-100">
+                            {% if perfume.mediasId | length > 0 %}
+                                <div style="position: relative; width: 100%; padding-top: 100%;">
+                                    <img src="{{ asset('upload/' ~ perfume.mediasId[0].src) }}" class="card-img-top img-fluid position-absolute top-0 start-0 w-100 h-100" style="object-fit: cover;" alt="{{ perfume.perfumeTitle }}">
+                                </div>
+                            {% endif %}
+                            <div class="card-body">
+                                <h5 class="card-title">{{ perfume.perfumeTitle }}</h5>
+                                <p class="card-text">Famille olfactive: {{ perfume.olfactiveFamilyId.familyName }}</p>
+                                <p class="card-text">{{ perfume.brand }}</p>
+                                <p class="card-text">{{ perfume.volume }} ml</p>
+                                <p class="card-text">{{ perfume.price }}€</p>
+                                <a href="{{ path('add_to_cart', {'id': perfume.id}) }}" class="btn btn-turquois">Ajouter au panier</a>
+                                <a href="#" class="btn btn-link">
+                                    {# à lier au rajout aux favoris #}
+                                    <i class="fa-regular fa-heart text-muted"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}

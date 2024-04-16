@@ -2,3 +2,33 @@
     background-color: skyblue;
 }
  */
+h1,h2,h3,h4,h5,h6,b,nav{
+    font-family: "Playfair Display", serif;
+}
+
+body{
+    font-family: "Poppins", serif;
+}
+
+/* Couleurs du site */
+
+:root {
+    --turquoise: #15616D; /* Couleur principale */
+    --bronze: #BC8340; /* Couleur secondaire */
+    --cream: #ECE5D1; /* Couleur tertiaire */
+}
+
+
+.btn-turquois {
+    background-color: var(--turquoise); /* Utilisation de la variable pour la couleur de fond */
+    color: white; /*la couleur du texte */
+}
+
+.btn-bronze {
+    background-color: var(--bronze); /* Utilisation de la variable pour la couleur de fond */
+    color: white; /*la couleur du texte */
+}
+
+.btn-cream{
+    background-color: var(--cream);
+}

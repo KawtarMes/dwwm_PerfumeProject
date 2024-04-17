@@ -38,6 +38,14 @@ class BlogController extends AbstractController
         ]);
     }
 
+    //Affichage et lecture d'un article
+    #[Route('/article/{id}', name: 'article_show')]
+    public function article(Article $article):Response
+    {
+    return $this->render('blog/article_show.html.twig',['article'=>$article]);
+    
+    }
+
     // Ajout et modification des articles
     #[Route('/new', name: 'admin_article_new')]
     #[Route('/update/{id}', name: 'admin_article_update')]

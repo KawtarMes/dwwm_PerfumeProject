@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        {% if article.medias is not empty %}
+            <img src="{{ asset('upload/' ~ article.medias[0].src) }}" class="img-fluid" alt="Image de couverture de l'article : {{ article.ArticleTitle }}">
+        {% endif %}
+        <h1 class="display-4 mt-3">{{ article.ArticleTitle }}</h1>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 mx-auto">
+           
+                
+                           <p class="card-text">{{ article.ArticleContent | raw }}</p>
+               
+         
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -2,43 +2,33 @@
 
 {% block body %}
 
-	<div class="container">
-		<h1>Liste des articles</h1>
+<div class="container">
+    <h1 class="text-center mb-4">Liste des articles</h1>
 
-		<div class="row">
-			{% for article in articles %}
-				<div class="col-md-4">
-					<div class="card mb-4">
-						{% if article.medias is not null %}
-							{% for media in article.medias %}
-								<img src="{{ asset('upload/' ~ media.src) }}" class="" width="300" alt="Image de couverture de l'article : {{article.ArticleTitle}}">
-							{% endfor %}
-						{% endif %}
-						<div class="card-body">
-							<h5 class="card-title">{{ article.ArticleTitle  }}</h5>
-							<p class="card-text">{{ article.ArticleContent | raw }}</p>
-							{# <a href="{{ path('article_show', {'id': article.id}) }}" class="btn btn-primary">Lire la suite</a> #}
-						</div>
-					</div>
-				</div>
-			{% endfor %}
-			{# {% for article in articles %}
-							<div class="col-md-4">
-								<div class="card mb-4">
-									{% if article.medias is not null %}
-										{% for media in article.medias %}
-											<img src="{{ asset('upload/' ~ media.src) }}" class="" width="300" alt="Image de couverture de l'article : {{article.ArticleTitle}}">
-										{% endfor %}
-									{% endif %}
-									<div class="card-body">
-										<h5 class="card-title">{{ article.ArticleTitle }}</h5>
-			
-										{# <a href="{{ path('article_show', {'id': article.id}) }}" class="btn btn-primary">Lire la suite</a> 
-									</div>
-								</div>
-							</div>
-						{% endfor %} #}
-		</div>
-	</div>
+    <div class="row">
+        {% for article in articles %}
+            <div class="col-md-12 mb-4">
+                <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                    <div class="col-md-3 d-flex align-items-center">
+                        {% if article.medias is not empty %}
+                            <img src="{{ asset('upload/' ~ article.medias[0].src) }}" class="img-fluid" alt="Image de couverture de l'article : {{ article.ArticleTitle }}">
+                        {% endif %}
+                    </div>
+                    <div class="col-md-9">
+                        <div class="p-4 d-flex flex-column h-100">
+                            <h5 class="mb-3">{{ article.ArticleTitle }}</h5>
+                            {# <p class="card-text flex-grow-1 mb-3">{{ article.ArticleContent | striptags | slice(0, 250) }}{% if article.ArticleContent | length > 250 %}...{% endif %}</p> #}
+                            <p>{{article.ArticleContent}}</p>
+                            <div class="d-flex justify-content-between align-items-end">
+                                <a href="{{ path('article_show', {'id': article.id}) }}" class="btn btn-turquois">Lire la suite</a>
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
 
 {% endblock %}

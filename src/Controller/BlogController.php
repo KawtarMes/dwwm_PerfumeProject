@@ -15,13 +15,25 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class BlogController extends AbstractController
 {
-    #[Route('/blog', name: 'admin_blog')]
+    
+    #[Route('admin/blog', name: 'admin_blog')]
     public function index(ArticleRepository $repo): Response
     {
         //recuperer les articles presents en base de donner
         $articles = $repo->findAll();
 
         return $this->render('blog/index.html.twig', [
+            'articles' => $articles,
+        ]);
+    }
+
+    #[Route('/blog', name: 'blog')]
+    public function blog(ArticleRepository $repo): Response
+    {
+        //recuperer les articles presents en base de donner
+        $articles = $repo->findAll();
+
+        return $this->render('blog/articles_blog.html.twig', [
             'articles' => $articles,
         ]);
     }
@@ -106,7 +118,7 @@ class BlogController extends AbstractController
         ]);
     }
 
-    #[Route('/detail/{id}', name: 'admin_detail_article')]
+    #[Route('admin/detail/{id}', name: 'admin_detail_article')]
     public function detail(Article $article, EntityManagerInterface $manager): Response
     {
         // dd($article);

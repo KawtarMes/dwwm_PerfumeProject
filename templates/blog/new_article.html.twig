@@ -2,14 +2,14 @@
 
 {% block body %}
 	<div
-		class="container-fluid p-3">
+		class="container-fluid p-3" id="creationArticle">
 		{# {{form(form)}} #}
 
 		{{ form_start(form) }}
 		{{  form_row(form.ArticleTitle) }}
-		{# {{  form_row(form.articleContent) }} #}
+		{# {{  form_row(form.articleContent) }}est hidden type#}
 
-		<p>Messages</p>
+		<p>Contenu de l'article</p>
 		<div id="editor"></div>
 
 

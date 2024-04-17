@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+	<div class="container">
+		<h1>Liste des articles</h1>
+
+		<div class="row">
+			{% for article in articles %}
+				<div class="col-md-4">
+					<div class="card mb-4">
+						{% if article.medias is not null %}
+							{% for media in article.medias %}
+								<img src="{{ asset('upload/' ~ media.src) }}" class="" width="300" alt="Image de couverture de l'article : {{article.ArticleTitle}}">
+							{% endfor %}
+						{% endif %}
+						<div class="card-body">
+							<h5 class="card-title">{{ article.ArticleTitle  }}</h5>
+							<p class="card-text">{{ article.ArticleContent | raw }}</p>
+							{# <a href="{{ path('article_show', {'id': article.id}) }}" class="btn btn-primary">Lire la suite</a> #}
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+			{# {% for article in articles %}
+							<div class="col-md-4">
+								<div class="card mb-4">
+									{% if article.medias is not null %}
+										{% for media in article.medias %}
+											<img src="{{ asset('upload/' ~ media.src) }}" class="" width="300" alt="Image de couverture de l'article : {{article.ArticleTitle}}">
+										{% endfor %}
+									{% endif %}
+									<div class="card-body">
+										<h5 class="card-title">{{ article.ArticleTitle }}</h5>
+			
+										{# <a href="{{ path('article_show', {'id': article.id}) }}" class="btn btn-primary">Lire la suite</a> 
+									</div>
+								</div>
+							</div>
+						{% endfor %} #}
+		</div>
+	</div>
+
+{% endblock %}

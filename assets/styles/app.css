@@ -19,6 +19,14 @@ body{
 }
 
 
+.color-turquois{
+    color: var(--turquoise);
+
+}
+.color-bronze{
+    color: var(--bronze);
+
+}
 .btn-turquois {
     background-color: var(--turquoise); /* Utilisation de la variable pour la couleur de fond */
     color: white; /*la couleur du texte */

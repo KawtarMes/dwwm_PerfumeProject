@@ -17,8 +17,7 @@
                     <div class="col-md-9">
                         <div class="p-4 d-flex flex-column h-100">
                             <h5 class="mb-3">{{ article.ArticleTitle }}</h5>
-                            {# <p class="card-text flex-grow-1 mb-3">{{ article.ArticleContent | striptags | slice(0, 250) }}{% if article.ArticleContent | length > 250 %}...{% endif %}</p> #}
-                            <p>{{article.ArticleContent}}</p>
+                            
                             <div class="d-flex justify-content-between align-items-end">
                                 <a href="{{ path('article_show', {'id': article.id}) }}" class="btn btn-turquois">Lire la suite</a>
                                

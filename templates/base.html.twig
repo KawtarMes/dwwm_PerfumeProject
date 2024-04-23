@@ -59,7 +59,7 @@
                     <a class="nav-link" href="#">Quiz</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Blog</a>
+                    <a class="nav-link" href="{{path('blog')}}">Blog</a>
                 </li>
                     <a class="nav-link " href="#">
                         À propos
@@ -111,6 +111,31 @@
 
     <!-- Body content -->
     {% block body %}{% endblock %}
-</div>
+</div> {% block footer %}
+<footer class="footer fixed-bottom mt-auto py-3 bg-light">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <span class="text-muted">© 2024 Bienvenu dans l'univers de parfumé Perfumes. Tous droits réservés.</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col text-muted text-center">
+        <small>Mentions légales | Politique de confidentialité | Conditions générales d'utilisation</small>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <a href="#" class="me-3 color-turquois"><i class="fab fa-facebook"></i></a>
+        <a href="#" class="me-3 color-bronze"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="me-3 color-turquois"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="me-3 color-bronze"><i class="fab fa-linkedin"></i></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% endblock %}
+
 </body>
 </html>

@@ -1,12 +1,78 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+{# <form action={{ path('app_catalogue_filter') }} method="POST"> #}
+    <!-- Champ pour filtrer par famille olfactive -->
+    <select name="olfactiveFamily">
+        <option value="">Filtrer par famille olfactive</option>
+        {% for family in families %}
+            <option value="{{ family.id }}">{{ family.familyName }}</option>
+        {% endfor %}
+    </select>
+    
+    <!-- Champ pour filtrer par marque -->
+    <input type="text" name="brand" placeholder="Filtrer par marque">
+    
+    <!-- Champ pour filtrer par prix -->
+    <select name="priceRange">
+        <option value="">Filtrer par prix</option>
+        <option value="0-50">0 - 50</option>
+        <option value="50-100">50 - 100</option>
+        <option value="100-200">100 - 200</option>
+        <option value="200+">200 et plus</option>
+    </select>
+    
+    <!-- Champ pour filtrer par note (tag) -->
+    <select name="note">
+        <option value="">Filtrer par note</option>
+        {% for note in notes %}
+            <option value="{{ note.id }}">{{ note.noteName }}</option>
+        {% endfor %}
+    </select>
+    
+    <button class="btn  btn-turquois" type="submit">Filtrer</button>
+</form>
+
+
+<pre>
+    {{ dump(perfumes) }}
+</pre>
+
+    {# <form action="{#{{ path('filter') }}" method="post">
+        <div class="row bg-secondary rounded text-white py-3 w-50 mx-auto justify-content-center text-center">
+            <div class="form-group col-md-3 mr-2">
+                <label for="exampleFormControlSelect1">Catégorie</label>
+                <select name="categorie" class="form-select" id="exampleFormControlSelect1">
+                    <option value="">Filtrez par catégorie</option>
+                    {% for family in families %}
+
+                        <option value="{{ family.id }}">{{ family.familyName}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group col-md-3  ml-2">
+                <label for="exampleFormControlSelect1">Prix</label>
+                <select name="prix" class="form-select" id="exampleFormControlSelect1">
+                    <option value="">Selectionnez un prix maximum</option>
+                    <option value="30">< 100€</option>
+                    <option value="200">< 200€</option>
+                    <option value="300">< 300€</option>
+                </select>
+            </div>
+            <div class="col-md-3 mt-4 text-center">
+                <button class="btn btn-dark text-light" type="submit">Filtrer</button>
+            </div>
+        </div>
+    </form> #}
     {# Catalogue #}
     <div class="container p-5">
         <div class="row row-cols-1 row-cols-md-3 g-4">
             {% for perfume in perfumes %}
+            <pre>
+                {{ dump(perfume) }}
+            </pre>
                 <div class="col">
-                    <a href="{{ path('app_show_perfume', {'id' : perfume.id}) }}" class="text-decoration-none text-dark">
+                    <a href={{ path('app_show_perfume', {'id' : perfume.id}) }} class="text-decoration-none text-dark">
                         <div class="card h-100">
                             {% if perfume.mediasId | length > 0 %}
                                 <div style="position: relative; width: 100%; padding-top: 100%;">

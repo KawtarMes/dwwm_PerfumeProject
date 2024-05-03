@@ -1,18 +1,46 @@
 {% extends 'base.html.twig' %}
-{% block title %}Accueil Perfumes{% endblock %}
 
-{% block body %}
-<div class="container-fluid p-0" style="height: 100vh; background-image: url('https://images.pexels.com/photos/965989/pexels-photo-965989.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'); background-size: cover; background-position: center;">
-    <div class="d-flex justify-content-center align-items-center h-100">
-        <div class="text-center text-light">
-            <div class="p-3 rounded" style="text-shadow: 0 0 5px rgba(0, 0, 0, 0.5)">
-                <h1>Bienvenue</h1>
-                <p>Bienvenue à notre site de parfums. Découvrez les secrets de la création de parfums et trouvez le parfum parfait pour vous. Avec notre quiz unique, explorez les préférences de notes olfactives et laissez-nous vous guider pour une expérience olfactive inoubliable.</p>
-            </div>
-            <a href="{{ path('app_catalogue') }}" class="btn btn-primary mt-3">Découvre notre catalogue</a>
-            <a href="#" class="btn btn-success mt-3">Découvre notre Blog</a>
-        </div>
-    </div>
-</div>
+{% block title %}Accueil Perfumes
+{% endblock %}
+{% block meta %}
+	<meta name="description" content="Plongez dans l'univers fascinant des fragrances chez Parfums ! Explorez notre blog informatif sur les parfums, découvrez notre vaste catalogue et trouvez votre parfum idéal. Inscrivez-vous dès maintenant pour devenir membre et profitez d'avantages exclusifs, tels que des recommandations personnalisées, des offres spéciales et un achat en ligne simplifié.">
 {% endblock %}
 
+{% block body %}
+	<div class="container-fluid p-0" style="height: 100vh; background-image: url('https://images.pexels.com/photos/965989/pexels-photo-965989.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'); background-size: cover; background-position: center;">
+		<div class="d-flex justify-content-center align-items-center h-100">
+			<div class="container-fluid col-6">
+				<div class="text-center text-dark">
+					<div class="p-3 rounded" style="text-shadow: 0 0 5px rgba(0, 0, 0, 0.5)">
+						<h1>Bienvenue</h1>
+						<p>Bienvenue à notre site de parfums. Découvrez les secrets de la création de parfums et trouvez le parfum parfait pour vous. Avec notre quiz unique, explorez les préférences de notes olfactives et laissez-nous vous guider pour une expérience olfactive inoubliable.</p>
+					</div>
+					<a href="{{ path('app_catalogue') }}" class="btn btn-turquois mt-3">Découvre notre catalogue</a>
+					<a href="#" class="btn btn-bronze mt-3">Découvre notre Blog</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container mt-5 btn-cream" id="contact">
+		<div class="row">
+			<div class="col-md-6 offset-md-3 mb-5">
+				<div id="ContactForm">
+					<h2 class="text-center">Contactez-nous</h2>
+					<form action="https://formspree.io/f/xdorrvep" method="POST">
+						<div class="form-group">
+							<label for="email">Votre email:</label>
+							<input type="email" class="form-control" id="email" name="email">
+						</div>
+						<div class="form-group">
+							<label for="message">Votre message:</label>
+							<textarea class="form-control" id="message" name="message"></textarea>
+						</div>
+
+						<button type="submit" class="btn btn-bronze mt-3">Envoyer</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

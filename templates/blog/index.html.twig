@@ -1,14 +1,14 @@
 {% extends 'backoffice.html.twig' %}
 
-{% block title %}Gestion articles
+{% block title %} Gestion articles 
 {% endblock %}
 
 {% block body %}
 
-	<div class="container-fluid p-3">
-		<h1>Gestion artcles ✅</h1>
+	<div class="container-fluid p-5">
+		<h1>Gestion des articles du blog</h1>
 
-		<a href="{{ path('admin_article_new')}}" class="btn btn-success w-25 mr-3">Ajouter un article</a>
+		<a href="{{ path('admin_article_new')}}" class="btn btn-turquois w-25 mr-3">Ajouter un article</a>
 
 		<table class="table">
 			<thead>
@@ -23,22 +23,22 @@
 				{% if articles | length > 0 %}
 					{% for article in articles %}
 						<tr>
-							<th scope="row">{{article.id}}</th>
+							<th scope="row"><p>{{article.id}}</th>
 							<td>
 								{{article.articleTitle}}
 							</td>
-							<td>
-								{{article.articleContent}}
+							<td><p class="card-text">{{ article.ArticleContent|striptags|slice(0, 150) ~ '...' }}</p>
+							
 							</td>
 
 							<td>
-								<a href="{{ url("admin_article_update", {'id' : article.id}) }}" class="btn btn-primary">Modifier</a>
+								<a href="{{ url("admin_article_update", {'id' : article.id}) }}" class="btn btn-turquois">Modifier</a>
 							</td>
 							<td>
-								<a href=" {{ url('admin_article_delete', {'id' : article.id}) }}" class="btn btn-danger ">Supprimer</a>
+								<a href=" {{ url('admin_article_delete', {'id' : article.id}) }}" class="btn btn-bronze ">Supprimer</a>
 							</td>
 							<td>
-								<a href=" {{ url('admin_detail_article', {'id' : article.id}) }}" class="btn btn-success ">Detail</a>
+								<a href=" {{ url('admin_detail_article', {'id' : article.id}) }}" class="btn btn-cream ">Detail</a>
 							</td>
 						{% endfor %}
 					{% endif %}

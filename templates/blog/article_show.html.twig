@@ -1,26 +1,21 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}
+  Article : {{ article.ArticleTitle }}
+{% endblock %}
+
 {% block body %}
+<div class="article-detail d-flex flex-column">
+  {% if article.medias is not empty %}
+    <img src="{{ asset('upload/' ~ article.medias[0].src) }}" class="img-fluid w-100 article-cover-image" style="height: 200px; object-fit: cover;" alt="Image de couverture de l'article : {{ article.ArticleTitle }}">
+  {% endif %}
 
-<div class="jumbotron jumbotron-fluid">
-    <div class="container">
-        {% if article.medias is not empty %}
-            <img src="{{ asset('upload/' ~ article.medias[0].src) }}" class="img-fluid" alt="Image de couverture de l'article : {{ article.ArticleTitle }}">
-        {% endif %}
-        <h1 class="display-4 mt-3">{{ article.ArticleTitle }}</h1>
+  <div class="article-content container mt-4"> <div class="row">
+      <div class="col-md-10 mx-auto">
+        <h1>{{ article.ArticleTitle }}</h1>
+        <p class="article-content">{{ article.ArticleContent | raw }}</p>
+      </div>
     </div>
+  </div>
 </div>
-
-<div class="container">
-    <div class="row">
-        <div class="col-md-12 mx-auto">
-           
-                
-                           <p class="card-text">{{ article.ArticleContent | raw }}</p>
-               
-         
-        </div>
-    </div>
-</div>
-
 {% endblock %}

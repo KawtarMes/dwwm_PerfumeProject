@@ -1,100 +1,68 @@
 {% extends 'base.html.twig' %}
-
+{% block title %}Catalogue Perfumes {% endblock %}
 {% block body %}
-{# <form action={{ path('app_catalogue_filter') }} method="POST"> #}
-    <!-- Champ pour filtrer par famille olfactive -->
-    <select name="olfactiveFamily">
-        <option value="">Filtrer par famille olfactive</option>
-        {% for family in families %}
-            <option value="{{ family.id }}">{{ family.familyName }}</option>
-        {% endfor %}
-    </select>
-    
-    <!-- Champ pour filtrer par marque -->
-    <input type="text" name="brand" placeholder="Filtrer par marque">
-    
-    <!-- Champ pour filtrer par prix -->
-    <select name="priceRange">
-        <option value="">Filtrer par prix</option>
-        <option value="0-50">0 - 50</option>
-        <option value="50-100">50 - 100</option>
-        <option value="100-200">100 - 200</option>
-        <option value="200+">200 et plus</option>
-    </select>
-    
-    <!-- Champ pour filtrer par note (tag) -->
-    <select name="note">
-        <option value="">Filtrer par note</option>
-        {% for note in notes %}
-            <option value="{{ note.id }}">{{ note.noteName }}</option>
-        {% endfor %}
-    </select>
-    
-    <button class="btn  btn-turquois" type="submit">Filtrer</button>
-</form>
-
-
-<pre>
-    {{ dump(perfumes) }}
-</pre>
-
-    {# <form action="{#{{ path('filter') }}" method="post">
-        <div class="row bg-secondary rounded text-white py-3 w-50 mx-auto justify-content-center text-center">
-            <div class="form-group col-md-3 mr-2">
-                <label for="exampleFormControlSelect1">Catégorie</label>
-                <select name="categorie" class="form-select" id="exampleFormControlSelect1">
-                    <option value="">Filtrez par catégorie</option>
+<div class="container-fluid py-5">
+   <div class="row justify-content-center">
+    <div class="col-md-6">
+        <!-- Form filtres -->
+        <form action="{# {{ path('app_catalogue_filter') }} #}" method="POST" class="mb-4">
+            <div class="input-group align-items-start">
+                <select name="olfactiveFamily" class="form-select mb-3" aria-label="Filtrer par famille olfactive">
+                    <option value="">Filtrer par famille olfactive</option>
                     {% for family in families %}
-
-                        <option value="{{ family.id }}">{{ family.familyName}}</option>
+                        <option value="{{ family.id }}">{{ family.familyName }}</option>
                     {% endfor %}
                 </select>
-            </div>
-            <div class="form-group col-md-3  ml-2">
-                <label for="exampleFormControlSelect1">Prix</label>
-                <select name="prix" class="form-select" id="exampleFormControlSelect1">
-                    <option value="">Selectionnez un prix maximum</option>
-                    <option value="30">< 100€</option>
-                    <option value="200">< 200€</option>
-                    <option value="300">< 300€</option>
+                <input type="text" name="brand" class="form-control mb-3" placeholder="Filtrer par marque">
+                <select name="priceRange" class="form-select mb-3" aria-label="Filtrer par prix">
+                    <option value="">Filtrer par prix</option>
+                    <option value="0-50">0 - 50</option>
+                    <option value="50-100">50 - 100</option>
+                    <option value="100-200">100 - 200</option>
+                    <option value="200+">200 et plus</option>
                 </select>
+                <select name="note" class="form-select mb-3" aria-label="Filtrer par note">
+                    <option value="">Filtrer par note</option>
+                    {% for note in notes %}
+                        <option value="{{ note.id }}">{{ note.noteName }}</option>
+                    {% endfor %}
+                </select>
+                <button class="btn btn-turquois mb-3" type="submit">Filtrer</button>
             </div>
-            <div class="col-md-3 mt-4 text-center">
-                <button class="btn btn-dark text-light" type="submit">Filtrer</button>
-            </div>
-        </div>
-    </form> #}
-    {# Catalogue #}
-    <div class="container p-5">
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-            {% for perfume in perfumes %}
-            <pre>
-                {{ dump(perfume) }}
-            </pre>
-                <div class="col">
-                    <a href={{ path('app_show_perfume', {'id' : perfume.id}) }} class="text-decoration-none text-dark">
-                        <div class="card h-100">
-                            {% if perfume.mediasId | length > 0 %}
-                                <div style="position: relative; width: 100%; padding-top: 100%;">
-                                    <img src="{{ asset('upload/' ~ perfume.mediasId[0].src) }}" class="card-img-top img-fluid position-absolute top-0 start-0 w-100 h-100" style="object-fit: cover;" alt="{{ perfume.perfumeTitle }}">
-                                </div>
-                            {% endif %}
-                            <div class="card-body">
-                                <h5 class="card-title">{{ perfume.perfumeTitle }}</h5>
-                                <p class="card-text">Famille olfactive: {{ perfume.olfactiveFamilyId.familyName }}</p>
-                                <p class="card-text">{{ perfume.brand }}</p>
-                                <p class="card-text">{{ perfume.volume }} ml</p>
-                                <p class="card-text">{{ perfume.price }}€</p>
-                                <a href="{{ path('add_to_cart', {'id': perfume.id}) }}" class="btn btn-turquois">Ajouter au panier</a>
-                                <a href="#" class="btn btn-link">
-                                    {# à lier au rajout aux favoris #}
-                                    <i class="fa-regular fa-heart text-muted"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            {% endfor %}
-        </div>
+        </form>
     </div>
+</div>
+
+</div>
+
+{# Catalogue #}
+<div class="container p-5">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for perfume in perfumes %}
+            <div class="col">
+                <a href="{{ path('app_show_perfume', {'id' : perfume.id}) }}" class="text-decoration-none text-dark">
+                    <div class="card h-100">
+                        {% if perfume.mediasId | length > 0 %}
+                            <div style="position: relative; width: 100%; padding-top: 100%;">
+                                <img src="{{ asset('upload/' ~ perfume.mediasId[0].src) }}" class="card-img-top img-fluid position-absolute top-0 start-0 w-100 h-100" style="object-fit: cover;" alt="{{ perfume.perfumeTitle }}">
+                            </div>
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ perfume.perfumeTitle }}</h5>
+                            <p class="card-text">Famille olfactive: {{ perfume.olfactiveFamilyId.familyName }}</p>
+                            <p class="card-text">{{ perfume.brand }}</p>
+                            <p class="card-text">{{ perfume.volume }} ml</p>
+                            <p class="card-text">{{ perfume.price }}€</p>
+                            <a href="{{ path('add_to_cart', {'id': perfume.id}) }}" class="btn btn-turquois">Ajouter au panier</a>
+                            <a href="#" class="btn btn-link">
+                                {# à lier au rajout aux favoris #}
+                                <i class="fa-regular fa-heart text-muted"></i>
+                            </a>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}

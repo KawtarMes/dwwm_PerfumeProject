@@ -1,11 +1,13 @@
 {% extends 'backoffice.html.twig' %}
 
-{% block title %}Gestion des Familles Olfactives{% endblock %}
+{% block title %}
+    Gestion des Familles Olfactives
+{% endblock %}
 
 {% block body %}
-<div class="container">
-    <h1 class="mb-4">Gestion des Familles Olfactives ✅</h1>
-    <a href="{{ path('admin_familyOlf_new')}}" class="btn btn-success w-25 mr-3">Ajouter une Famille olfactive</a>
+<div class="container-fluid p-5">
+    <h1>Gestion des Familles Olfactives</h1>
+    <a href="{{ path('admin_familyOlf_new')}}" class="btn btn-turquois w-25 mr-3">Ajouter une Famille olfactive</a>
     <table class="table">
         <thead class="thead-dark">
             <tr>
@@ -13,14 +15,14 @@
                 <th scope="col">Nom</th>
                 <th scope="col">Description</th>
                 <th scope="col">Notes</th>
-                <th scope="col">Actions</th>
+                <th scope="col" class="col-3">Actions</th>
             </tr>
         </thead>
         <tbody>
             {% if families | length > 0 %}
             {% for family in families %}
             <tr>
-                <th scope="row">{{family.id}}</th>
+                <td>{{family.id}}</td>
                 <td>{{family.familyName}}</td>
                 <td>{{family.familyDescription}}</td>
                 <td>
@@ -29,11 +31,15 @@
                     {% endfor %}
                 </td>
                 <td>
-                    <a href="{{ url("admin_familyOlf_update", {'id' : family.id}) }}" class="btn btn-primary">Modifier</a>
-                    <a href="{{ url("admin_familyOlf_delete", {'id' : family.id}) }}" class="btn btn-danger">Supprimer</a>
+                    <a href="{{ url("admin_familyOlf_update", {'id' : family.id}) }}" class="btn btn-turquois">Modifier</a>
+                    <a href="{{ url("admin_familyOlf_delete", {'id' : family.id}) }}" class="btn btn-bronze">Supprimer</a>
                 </td>
             </tr>
             {% endfor %}
+            {% else %}
+            <tr>
+                <td colspan="5">Aucune famille olfactive trouvée</td>
+            </tr>
             {% endif %}
         </tbody>
     </table>

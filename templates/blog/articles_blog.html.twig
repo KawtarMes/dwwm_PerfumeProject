@@ -1,33 +1,43 @@
 {% extends 'base.html.twig' %}
-
+{% block title %}
+    Blog: Découvrez nos articles
+{% endblock %}
 {% block body %}
 
-<div class="container">
-    <h1 class="text-center mb-4">Liste des articles</h1>
-
-    <div class="row">
-        {% for article in articles %}
-            <div class="col-md-12 mb-4">
-                <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                    <div class="col-md-3 d-flex align-items-center">
-                        {% if article.medias is not empty %}
-                            <img src="{{ asset('upload/' ~ article.medias[0].src) }}" class="img-fluid" alt="Image de couverture de l'article : {{ article.ArticleTitle }}">
-                        {% endif %}
-                    </div>
-                    <div class="col-md-9">
-                        <div class="p-4 d-flex flex-column h-100">
-                            <h5 class="mb-3">{{ article.ArticleTitle }}</h5>
-                            
-                            <div class="d-flex justify-content-between align-items-end">
-                                <a href="{{ path('article_show', {'id': article.id}) }}" class="btn btn-turquois">Lire la suite</a>
-                               
+    <div class="container-fluid d-flex flex-column">
+        <div class="container ">
+            <h1 class="text-center mb-4">Blog : Découvrez nos articles</h1>
+            <article>
+                <p>Bienvenue dans notre section blog dédiée à l'univers captivant des parfums ! 
+                    Que vous soyez un passionné de longue date ou un néophyte curieux, notre plateforme est conçue pour vous éclairer, vous inspirer et vous guider à travers les méandres envoûtants de cet art olfactif..
+                    Que vous cherchiez à comprendre les subtilités des différentes familles olfactives, à découvrir les dernières tendances du monde du parfum ou à trouver le parfum parfait pour chaque occasion, notre blog est votre compagnon idéal.</p>
+            </article>
+            <div class="row row-cols-1">
+                {% for article in articles %}
+                    <div class="mb-4 mt-5">
+                        <div class="border rounded overflow-hidden shadow-sm position-relative">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    {% if article.medias is not empty %}
+                                        <img src="{{ asset('upload/' ~ article.medias[0].src) }}" class="img-fluid" alt="Image de couverture de l'article : {{ article.ArticleTitle }}">
+                                    {% endif %}
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="p-4">
+                                        <h5 class="mb-3">{{ article.ArticleTitle }}</h5>
+                                        <p class="card-text">{{ article.ArticleContent|striptags|slice(0, 150) ~ '...' }}</p>
+                                        <a href="{{ path('article_show', {'id': article.id}) }}" class="btn btn-turquois">Lire la suite</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                {% endfor %}
             </div>
-        {% endfor %}
+        </div>
+        <footer class="mt-auto"> <!-- Utilisation de la classe "mt-auto" pour placer le footer en bas -->
+            <!-- Contenu du footer -->
+        </footer>
     </div>
-</div>
 
 {% endblock %}

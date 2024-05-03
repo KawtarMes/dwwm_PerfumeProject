@@ -160,7 +160,7 @@ class SecurityController extends AbstractController
                     ->htmlTemplate('email/reset_password.html.twig')
                     ->context([
                         'user' => $user,
-                        // 'img_dir' => $this->getParameter('img_dir'),
+                       
                     ]);
 
                 $mailer->send($email);

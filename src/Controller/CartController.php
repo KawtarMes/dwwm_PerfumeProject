@@ -19,9 +19,9 @@ class CartController extends AbstractController
     public function addCart(Perfume $perfume, CartService $cartService):Response
     {
         $cartService->add($perfume);
-        $this->addFlash('info', 'Ajouté au panier');
+        $this->addFlash('info', 'Parfum ajouté au panier');
     
-    return $this->redirectToRoute('cart');
+    return $this->redirectToRoute('app_catalogue');
     }
 
     // Route pour remove un parfum

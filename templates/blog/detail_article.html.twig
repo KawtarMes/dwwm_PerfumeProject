@@ -1,17 +1,31 @@
-{% extends 'backoffice.html.twig'  %}
+{% extends 'backoffice.html.twig' %}
+
+{% block title %}Détail de l'article - {{ article.articleTitle }}{% endblock %}
+
 {% block body %}
 
-
-	<td>
-		{% if article.medias is not null %}
-			{% for media in article.medias %}
-				<img src="{{ asset('upload/' ~ media.src) }}" class="" width="400" alt="">
-			{% endfor %}
-		{% endif %}
-	</td>
-<p> {{article.articleContent}}</p>
-	{% if article.medias is not null %}
-		<a href="{{ path('admin_article_delete_media', {'id': article.id}) }}" class="btn btn-danger">Supprimer le média</a>
-	{% endif %}
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-8">
+      <h2>{{ article.articleTitle }}</h2>
+      <p>{{ article.articleContent | raw }}</p>
+    </div>
+    <div class="col-md-4">
+      {% if article.medias is not empty %}
+        <h4>Médias associés</h4>
+        <div class="d-flex flex-wrap gap-2">
+          {% for media in article.medias %}
+            <div class="img-thumbnail">
+              <img src="{{ asset('upload/' ~ media.src) }}" alt="image couverture d el'article : {{ article.articleTitle }}" class="img-fluid">
+              <a href="{{ path('admin_article_delete_media', {'id': article.id, 'mediaId': media.id}) }}" class="btn btn-sm btn-danger">Supprimer</a>
+            </div>
+          {% endfor %}
+        </div>
+      {% else %}
+        <p>Aucun média associé à cet article.</p>
+      {% endif %}
+    </div>
+  </div>
+</div>
 
 {% endblock %}

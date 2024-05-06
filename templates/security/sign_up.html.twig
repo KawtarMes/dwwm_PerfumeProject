@@ -1,7 +1,50 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello SecurityController!{% endblock %}
+{% block title %}Inscription{% endblock %}
 
 {% block body %}
-{{form(form)}}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            
+              <h1> Inscription</h1>
+               
+                    {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+                        <div class="form-group">
+                            {{ form_label(form.nickname, 'Pseudo', {'label_attr': {'class': 'control-label'}}) }}
+                            {{ form_widget(form.nickname, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(form.nickname) }} {# Affiche les erreurs de validation #}
+                        </div>
+                        <div class="form-group">
+                            {{ form_label(form.firstname, 'Prénom', {'label_attr': {'class': 'control-label'}}) }}
+                            {{ form_widget(form.firstname, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(form.firstname) }} {# Affiche les erreurs de validation #}
+                        </div>
+                        <div class="form-group">
+                            {{ form_label(form.lastname, 'Nom', {'label_attr': {'class': 'control-label'}}) }}
+                            {{ form_widget(form.lastname, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(form.lastname) }} {# Affiche les erreurs de validation #}
+                        </div>
+                        <div class="form-group">
+                            {{ form_label(form.email, 'Email', {'label_attr': {'class': 'control-label'}}) }}
+                            {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(form.email) }} {# Affiche les erreurs de validation #}
+                        </div>
+                        <div class="form-group">
+                            {{ form_label(form.password.first, 'Mot de passe', {'label_attr': {'class': 'control-label'}}) }}
+                            {{ form_widget(form.password.first, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(form.password.first) }} {# Affiche les erreurs de validation #}
+                        </div>
+                        <div class="form-group">
+                            {{ form_label(form.password.second, 'Confirmation du mot de passe', {'label_attr': {'class': 'control-label'}}) }}
+                            {{ form_widget(form.password.second, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(form.password.second) }} {# Affiche les erreurs de validation #}
+                        </div>
+              
+                    {{ form_end(form) }}
+              
+            
+        </div>
+    </div>
+</div>
 {% endblock %}

@@ -13,8 +13,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/admin/perfume')]
+#[IsGranted(('ROLE_ADMIN'))]//Protection sur la route admin. 403 Si on est pas admin
 class PerfumeController extends AbstractController
 {
     // Gestion Produits: Parfums
@@ -44,15 +46,16 @@ class PerfumeController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             //on recupere les valeurs du form
-            //on crée une instance de la classe Perfume , qui recupere les valeurs
+            //on hydrate l'instance de la classe Perfume , qui recupere les valeurs à partir du formulaire
             $perfume = $form->getData();
 
-            //prepare and execute la requete
+            //preparer and executer la requete
             $manager->persist($perfume);
             $manager->flush();
-            //redirection à l'index
+            //redirection à media create pour rajouter image
             return $this->redirectToRoute('media_create', ['id' => $perfume->getId()]); //renvoyer l'id dans l'url de media create
         }
+        //view du formulaire de creation de parfum
         return $this->render('perfume/newPerfume.html.twig', ['form' => $form->createView()]);
     }
 
@@ -80,7 +83,7 @@ class PerfumeController extends AbstractController
     #[Route('/update/{id}', name: 'admin_perfume_update')]
     public function update(Perfume $perfume, Request $request, EntityManagerInterface $entityManager)
     {
-        $form = $this->createForm(PerfumeType::class, $perfume);
+        $form = $this->createForm(PerfumeType::class, $perfume);// prérempli par $perfume qui est l'objet parfum dont on a recuperé l'id
 
         //recuper les champs rempli du formulaire
         $form->handleRequest($request);
@@ -89,13 +92,13 @@ class PerfumeController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             //on recupere les valeurs du form
-            //on crée une instance de la classe Perfume , qui recupere les valeurs
+            //on re hydrate l'instance de la classe Perfume récuperée , on change les valeurs des champs en fonction du form
             $perfume = $form->getData();
 
             //prepare and execute la requete
             $entityManager->persist($perfume);
             $entityManager->flush();
-            //redirection à l'index
+            //redirection 
             return $this->redirectToRoute('media_create', ['id' => $perfume->getId()]); //renvoyer l'id dans l'url de media create);
         }
         return $this->render('perfume/newPerfume.html.twig', ['form' => $form->createView()]);

@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class HomeController extends AbstractController
 {
-    // accueil avec Catalogue
+    // Catalogue
     #[Route('/', name: 'app_home')]
     public function index(PerfumeRepository $repo): Response
     {

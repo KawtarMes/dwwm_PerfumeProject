@@ -10,8 +10,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-
+#[IsGranted(('ROLE_ADMIN'))]//Protection sur la route admin. 403 Si on est pas admin
 #[Route('admin/family')]
 class OlfactiveFamilyController extends AbstractController
 {
@@ -68,10 +69,11 @@ class OlfactiveFamilyController extends AbstractController
     #[Route('/delete/{id}', name: 'admin_familyOlf_delete')]
     public function delete(OlfactiveFamilyRepository $repo, EntityManagerInterface $manager, $id): Response
     {
+        //Récupere la famille par son id grace à la methode READ du repository
         $family = $repo->find($id);
 
         if ($family) {
-            $manager->remove($family);
+            $manager->remove($family);// entity manager qui supprime la famille trouvée 
             $manager->flush();
 
             return $this->redirectToRoute('admin_olfactive_family');

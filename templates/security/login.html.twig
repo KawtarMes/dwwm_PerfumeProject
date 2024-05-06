@@ -33,15 +33,14 @@
                         <input type="checkbox" name="_remember_me" id="remember_me" class="form-check-input" checked>
                         <label class="form-check-label" for="remember_me">Se souvenir de moi</label>
                     </div>
-
-                    <div class="mb-3">
-                        <a href="{{ path('reset_password') }}">Pas reçu le mail d'activation? Renvoi</a>
-                    </div>
                     <div class="mb-3">
                         <a href="{{ path('reset_password') }}">Mot de passe oublié?</a>
                     </div>
 
-                    <button class="btn btn-lg btn-turquois" type="submit">Connexion</button>
+                    <button class="btn btn-lg btn-turquois mb-3" type="submit">Connexion</button>
+                       <div class="mb-3">
+                       Vous avez pas de compte? <a href="{{ path('sign_up') }}">Créer un compte</a>
+                    </div>
                 </form>
             </div>
         </div>

@@ -22,7 +22,7 @@ class SecurityController extends AbstractController
 
     //Inscription , creation d'utilisateur///////////////////////////////////////////////////
     #[Route('/signup', name: 'sign_up')]
-    public function index(EntityManagerInterface $manager, Request $request, UserPasswordHasherInterface $hasher, MailerInterface $mailer): Response
+    public function signup(EntityManagerInterface $manager, Request $request, UserPasswordHasherInterface $hasher, MailerInterface $mailer): Response
     {
         //  crée une instance de user
         $user = new User();
@@ -35,6 +35,7 @@ class SecurityController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             //set sasie du form dans user
             $user = $form->getData();
+
             //hasher le mot de passe
             $user->setPassword($hasher->hashPassword($user, $form->get('password')->getData()));
 

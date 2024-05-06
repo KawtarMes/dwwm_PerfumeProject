@@ -28,12 +28,5 @@ class PerfumeTest extends KernelTestCase
         $this->assertCount(0, $errors);
         $this->assertSame('PerfumTestTitle', $perfume->getPerfumeTitle());
         $this->assertSame('DescriptionTest', $perfume->getDescription());
-
-
-
-
-        // $this->assertSame('test', $kernel->getEnvironment());
-        // // $routerService = static::getContainer()->get('router');
-        // // $myCustomService = static::getContainer()->get(CustomService::class);
     }
 }

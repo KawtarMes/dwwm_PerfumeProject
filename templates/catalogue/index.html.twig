@@ -36,10 +36,10 @@
 </div>
 
 {# Catalogue #}
-<div class="container p-5">
-    <div class="row row-cols-1 row-cols-md-3 g-4">
+<div class="container ">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4  ">
         {% for perfume in perfumes %}
-            <div class="col">
+            <div class="col my-4">
                 <a href="{{ path('app_show_perfume', {'id' : perfume.id}) }}" class="text-decoration-none text-dark">
                     <div class="card h-100">
                         {% if perfume.mediasId | length > 0 %}

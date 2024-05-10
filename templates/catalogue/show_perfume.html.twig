@@ -3,17 +3,17 @@
 {% block title %}Detail Parfum : {{perfume.perfumeTitle}}{% endblock %}
 
 {% block body %}
-    <!-- Product section -->
+    <!-- Parfum section -->
     <section class="py-5">
         <div class="container px-4 px-lg-5 my-5">
             <div class="row gx-4 gx-lg-5 align-items-center">
-                <!-- Product image column -->
+                <!-- Parfum image col -->
                 <div class="col-md-6">
                     <div class="ratio ratio-1x1 mb-5 mb-md-0">
                         <img src="{{ asset('upload/' ~ perfume.mediasId[0].src) }}" class="card-img-top w-100 h-100 object-cover" alt="Image du parfum : {{ perfume.perfumeTitle }}">
                     </div>
                 </div>
-                <!-- Product details column -->
+                <!-- Parfum details col -->
                 <div class="col-md-6">
                     <div class="small mb-1">Ref: {{ perfume.id }}</div>
                     <h1 class="display-5 fw-bolder">{{ perfume.perfumeTitle }}</h1>
@@ -34,7 +34,7 @@
                     </div>
                 </div>
             </div>
-            <!-- Product notes carousel -->
+            <!-- Parfum notes carousel -->
             <div class="row mt-5">
                 <div class="col-md-6">
                     <h2 class="fw-bolder mb-4">Notes:</h2>
@@ -65,12 +65,12 @@
         </div>
     </section>
 
-    <!-- Related items section -->
+<!--Produits similaires -->
     <section class="py-5 bg-light">
         <div class="container px-4 px-lg-5 mt-5">
             <h2 class="fw-bolder mb-4">Produits similaires</h2>
             <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-                <!--Produits similaires -->
+                
             </div>
         </div>
     </section>

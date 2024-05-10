@@ -36,8 +36,8 @@ class PerfumeController extends AbstractController
     public function new(Request $request, EntityManagerInterface $manager): Response
     {
         $perfume = new Perfume();
-        //formulaire, vide ou alimenté avec le $perfume recuperé si y en a un 
-        $form = $this->createForm(PerfumeType::class, $perfume);
+        //formulaire avec PerfumeType 
+        $form = $this->createForm(PerfumeType::class);
 
         //recuper les champs rempli du formulaire
         $form->handleRequest($request);

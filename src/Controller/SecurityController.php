@@ -27,11 +27,10 @@ class SecurityController extends AbstractController
         //  crée une instance de user
         $user = new User();
 
-        //créer le form 
-        $form = $this->createForm(RegistrationType::class);
-
+        //créer le form et gerer la requête
+        $form = $this->createForm(RegistrationType::class);   
         $form->handleRequest($request);
-
+        //verification formulaire (saisie et valide)
         if ($form->isSubmitted() && $form->isValid()) {
             //set sasie du form dans user
             $user = $form->getData();
@@ -53,7 +52,6 @@ class SecurityController extends AbstractController
 
             $this->addFlash('success', "Votre compte a bien été crée, Allez vite l'activer");
 
-
             //mail pour la validation       
             $email = (new TemplatedEmail())
                 ->from('kawtarthebest@gmail.com')
@@ -61,8 +59,7 @@ class SecurityController extends AbstractController
                 ->subject('✨Bienvenue chez Perfumes, Activez votre compte✨')
                 // chemin du template du mail 
                 ->htmlTemplate('email/validateAccount.html.twig')
-
-
+                
                 //var twig
                 ->context([
                     'user' => $user
@@ -129,7 +126,7 @@ class SecurityController extends AbstractController
     #[Route(path: '/deconnexion', name: 'app_logout')]
     public function logout(): void
     {
-        throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
+        // throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
 
 

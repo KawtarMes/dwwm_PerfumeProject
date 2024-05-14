@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Notes;
+use App\Entity\OlfactiveFamily;
 use App\Entity\Perfume;
 use App\Repository\NotesRepository;
 use App\Repository\OlfactiveFamilyRepository;
@@ -20,13 +21,12 @@ class CatalogueController extends AbstractController
     #[Route('/', name: 'app_catalogue')]
     public function index(PerfumeRepository $repo, OlfactiveFamilyRepository $familyRepo, NotesRepository $notesRepo, Request $request): Response
     {
-        
-        // $perfumes = $request->get('perfumes');
-        
-        // if(empty($perfumes)) {
+// //recupere le choix d efam olf du user
+//         $olfactiveFamily = $request->request->get('olfactiveFamily');
 
-        //     $perfumes= $repo->findAll();
-        // }
+//         if(!empty($olfactiveFamily)){
+//             $filteredPerfumes = $repo->findByOLf($olfactiveFamily);
+//         }
 
         $perfumes = $repo->findAll();
         $families= $familyRepo->findAll();

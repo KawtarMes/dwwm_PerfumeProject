@@ -7,7 +7,7 @@
 			{% block title %}Bienvenue dans l'univers de Parfumé Perfumes
 			{% endblock %}
 		</title>
-		{# <!-- schema.org -->
+		{# <!-- schema.org --> #}
 		<script type="application/ld+json">
 			{
 			      "@context": "https://schema.org",
@@ -21,7 +21,7 @@
 			        "query-input": "searchTerms"
 			      }
 			    }
-		</script> #}
+		</script>
 		{% block stylesheets %}
 			<!-- Bootstrap CSS -->
 			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" integrity="sha512-b2QcS5SsA8tZodcDtGRELiGv5SaKSk1vDHDaQRda0htPYWZ6046lr3kJ5bAAQdpV2mmA/4v0wQF9MyU6/pDIAg==" crossorigin="anonymous" referrerpolicy="no-referrer">
@@ -50,7 +50,7 @@
 			<div
 				class="container-fluid">
 				<!-- Brand -->
-				<a class="navbar-brand" href="#">Perfumes</a>
+				<a class="navbar-brand" href="{{path('app_home')}}">Perfumes</a>
 				{# <a class="navbar-brand" href="#">
 								            <img src="public/upload/Perfumes.png" alt="Logo" width="auto" height="30">
 								        </a> #}
@@ -72,7 +72,7 @@
 						<li class="nav-item">
 							<a class="nav-link" href="{{path('blog')}}">Blog</a>
 						</li>
-						<a class="nav-link " href="#">
+						<a class="nav-link " href="{{path('apropos')}}">
 							À propos
 						</a>
 					</li>

@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\OlfactiveFamily;
 use App\Entity\Perfume;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -21,6 +22,16 @@ class PerfumeRepository extends ServiceEntityRepository
         parent::__construct($registry, Perfume::class);
     }
 
+   // Filtrage par famille olfactive
+   public function findByOLf(OlfactiveFamily $olfactiveFamily){
+    $queryBuilder = $this->createQueryBuilder('p');
+    if (!empty($olfactiveFamily)) {
+         $queryBuilder
+            ->andWhere('p.olfactive_family_id = :olfactiveFamily')
+            ->setParameter('olfactiveFamily', $olfactiveFamily);
+    }
+   }
+        
 //     //fonction pour les requetes de filtrage catalogue
 //     public function findByFilters($olfactiveFamily, $brand, $priceRange, $tag)
 // {

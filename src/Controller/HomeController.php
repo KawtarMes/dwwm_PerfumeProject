@@ -20,4 +20,14 @@ class HomeController extends AbstractController
             'perfumes'=>$perfumes,
         ]);
     }
+
+    // section à propos
+    #[Route('/apropos', name: 'apropos')]
+    public function apropos():Response
+    {
+    
+    
+    return $this->render('home/apropos.html.twig',[]);
+    
+    }
 }

@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}À propos de Perfumes
+{% endblock %}
+
+{% block body %}
+
+	<main class="container about-page my-5">
+		<h1 class="text-center mb-4">À propos de Perfumes</h1>
+		<div class="row">
+			<div class="col-md-6">
+				<img src="https://images.pexels.com/photos/965990/pexels-photo-965990.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Image à propos" class="img-fluid">
+			</div>
+			<div class="col-md-6">
+				<p>
+					Bienvenue sur Perfumes, votre destination en ligne pour tout ce qui concerne les parfums. Notre site est conçu pour offrir une expérience utilisateur exceptionnelle, que vous soyez un amateur de parfums chevronné ou que vous commenciez tout juste à explorer le monde des fragrances.
+				</p>
+				<h2>Notre catalogue de parfums</h2>
+				<p>
+					Notre catalogue de parfums est vaste et varié, comprenant des marques de renom et des parfums de niche. Nous avons soigneusement classé nos parfums selon les familles olfactives, vous permettant ainsi de trouver facilement celui qui correspond à vos préférences.
+				</p>
+                <a href="{{path('app_catalogue')}}" class="btn btn-turquois">Catalogue</a>
+				<h2>Processus d'achat</h2>
+				<p>
+					Enfin, notre processus d'achat est simple et sécurisé. Ajoutez simplement vos parfums préférés à votre panier, passez à la caisse et nous nous occupons du reste. Nous offrons une livraison rapide et fiable, vous assurant ainsi de recevoir vos parfums dans les meilleurs délais.
+				</p>
+				<a href="{{path('cart')}}" class="btn btn-bronze">Panier</a>
+				<h2>Notre blog</h2>
+				<p>
+					Notre blog est une source d'information précieuse pour tous les amateurs de parfums. Nous y publions régulièrement des articles sur les dernières tendances en matière de parfums, des conseils pour choisir et porter un parfum, des interviews de parfumeurs et bien plus encore.
+				</p>
+				<a href="{{path('blog')}}" class="btn btn-turquois">Blog</a>
+
+				<h2>Profils utilisateurs</h2>
+				<p>
+					Chez Perfumes, nous croyons que l'achat d'un parfum est une expérience personnelle. C'est pourquoi nous avons créé des profils utilisateurs, où vous pouvez enregistrer vos parfums préférés, consulter votre historique d'achats et recevoir des recommandations personnalisées.
+				</p>
+				<a href="{{path('app_user_profil')}}" class="btn btn-bronze">Profil</a>
+                <h2>Quiz</h2>
+				<p>
+					En phase de developpemnt on a un quiz pour vous, à fin de vous orienter vers la famille olfactive qui pourrait vous plaire le plus en fonction de vos reponse.
+				</p>
+				<p class="btn btn-cream">Profil</p>
+                  <h2>Commentaires et ratings</h2>
+				<p>
+					En phase de developpemnt on il y aussi la fonctionnalité rating et commentaire ou vous pourrez ajouter votre aviz et commentaire sur les parfums que vous avez acheter et tester; pour rendre vos achat plus facile et vous aider tout au long de votre parcours utilisateurs sur notre site 
+				</p>
+				<p class="btn btn-cream">Commentaires & Rating</p>
+			</div>
+		</div>
+
+	</main>
+
+{% endblock %}

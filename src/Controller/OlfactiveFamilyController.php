@@ -49,7 +49,6 @@ class OlfactiveFamilyController extends AbstractController
         // verification des deux condition : formulaire soumis et si il est valide
         if ($form->isSubmitted() && $form->isValid()) {
 
-
             //on recupere les valeurs du form
             //on crée une instance de la classe OlfactiveFamily , qui recupere les valeurs
             $family = $form->getData();
